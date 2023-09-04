@@ -7,3 +7,11 @@
 https://www.npmjs.com/package/ws
 https://developer.mozilla.org/ko/docs/Web/API/WebSocket
 
+
+## 2. Socket IO를 이용한 간단한 메시지 앱 생성하기
+Socket.IO
+https://socket.io/
+서버 설치 시
+https://socket.io/docs/v4/server-installation/
+클라이언트 설치 시
+https://socket.io/docs/v4/client-installation/

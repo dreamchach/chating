@@ -1,14 +1,12 @@
-const ws = new WebSocket('ws://localhost:7071/ws')
+const socket = io('ws://localhost:8080')
 
-ws.onmessage = (webSocketMessage) => {
-    console.log(webSocketMessage)
-    console.log(webSocketMessage.data)
-}
+socket.on('message2', (text) => {
+    const element = document.createElement('li')
+    element.innerHTML = text
+    document.querySelector('ul').appendChild(element)
+})
 
-document.body.onmousemove = (event) => {
-    const messageBody = {
-        x : event.clientX,
-        y : event.clientY
-    }
-    ws.send(JSON.stringify(messageBody))
+document.querySelector('button').onclick = () => {
+    const text = document.querySelector('input').value
+    socket.emit('message1', text)
 }
