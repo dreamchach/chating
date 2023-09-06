@@ -15,3 +15,7 @@ https://socket.io/
 https://socket.io/docs/v4/server-installation/
 클라이언트 설치 시
 https://socket.io/docs/v4/client-installation/
+
+## 3. 채팅방 입장 시 화면 구현하기
+Node,js HTTP 모듈
+https://www.w3schools.com/nodejs/nodejs_http.asp
