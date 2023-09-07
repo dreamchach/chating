@@ -24,3 +24,9 @@ https://www.w3schools.com/nodejs/nodejs_http.asp
 ## 4. 채팅방 메시지 날리기
 
 ## 5. 채팅방에서 나가기
+
+## 6. Private Chat구현하기(DM) - 환경설정
+### 1. 웹 기본 구조 생성
+### 2. 웹 기본 UI 생성
+### 3. Socket.IO 연동
+### 4. mongoDB 연동
