@@ -19,3 +19,6 @@ https://socket.io/docs/v4/client-installation/
 ## 3. 채팅방 입장 시 화면 구현하기
 Node,js HTTP 모듈
 https://www.w3schools.com/nodejs/nodejs_http.asp
+
+
+## 4. 채팅방 메시지 날리기

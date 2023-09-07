@@ -5,6 +5,13 @@ const username = query.get('username')
 // 'John'
 const room = query.get('room')
 // 'Roomy'
+const messageForm = document.querySelector('#message-form')
+// const messageFormInput = messageForm.querySelector('input')
+// const messageFormButton = messageForm.querySelector('button')
+const scrollToButtom = () => {
+    console.dir(messages)
+    messages.scrollTop = messages.scrollHeight
+}
 
 console.log(socket)
 
@@ -38,7 +45,23 @@ socket.on('joinMessage', (message) => {
     document.querySelector('#messages').innerHTML += messageTemplate
 })
 
-const scrollToButtom = () => {
-    console.dir(messages)
-    messages.scrollTop = messages.scrollHeight
-}
+const submitButton = document.querySelector('.submit')
+submitButton.addEventListener('click', (event) => {
+    console.log('submit')
+    event.preventDefault()    
+    const message = event.target.elements.message.value
+    console.dir(event.target)
+    console.log(message)
+
+
+    messageFormButton.setAttribute('disabled', 'disabled')
+    socket.emit('sendMessage', message, (error) => {
+        messageFormButton.removeAttribute('disabled')
+        messageFormInput.value = ''
+        messageFormInput.focus()
+
+        if(error) {
+            return console.log(error)
+        }
+    })
+}) 
