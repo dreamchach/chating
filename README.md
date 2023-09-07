@@ -22,3 +22,5 @@ https://www.w3schools.com/nodejs/nodejs_http.asp
 
 
 ## 4. 채팅방 메시지 날리기
+
+## 5. 채팅방에서 나가기
