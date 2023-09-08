@@ -10,6 +10,7 @@ const io = new Server(server)
 let users = []
 const mongoose = require('mongoose')
 const crypto = require('crypto')
+const { saveMessages } = require('./utills/messages')
 const randomId = () => crypto.randomBytes(8).toString('hex')
 
 require('dotenv').config()
@@ -51,7 +52,10 @@ io.on('connection', async(socket) => {
     }
     users.push(userData)
     io.emit('users-data', {users})
-    socket.on('message-to-server', () => {})
+    socket.on('message-to-server', (payload) => {
+        io.to(payload.to).emit('message-to-client', payload)
+        saveMessages(payload)
+    })
     socket.on('fetch-messages', () => {})
     socket.on('disconnected', () => {})
 })

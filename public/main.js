@@ -7,6 +7,8 @@ const title = document.querySelector('#active-user')
 const messages = document.querySelector('.messages')
 const messageDiv = document.querySelector('.message-form')
 const loginForm = document.querySelector('.user-login')
+const messageForm = document.querySelector('.messageForm')
+const message = document.getElementById('message')
 const socket = io('http://localhost:4000', {
     autoConnect : false
 })
@@ -88,3 +90,46 @@ const setActiveUser = (username, userID) => {
     messages.innerHTML = ''
     socket.emit('fetch-messages', {receiver : userID})
 }
+
+const appendMessage = ({message, time}) => {
+    let div = document.createElement('div')
+
+    div.classList.add('message')
+    div.innerHTML = `
+        <span class='message-text'>${message}</span>
+        <span class='message-time'>${time}</span>
+    `
+    messages.append(div)
+    messages.scrollTo(0, messages.scrollHeight)
+}
+
+messageForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const to = title.getAttribute('userID')
+    const time = new Date().toLocaleString('en-US', {
+        hour : 'numeric',
+        minute: 'numeric',
+        hour12 : true
+    })
+    const payload = {
+        from : socket.id,
+        to,
+        message: message.value,
+        time
+    }
+
+    socket.emit('message-to-server', payload)
+    appendMessage(payload)
+    message.value = ''
+    message.focus()
+})
+
+socket.on('message-to-client', ({from, message, time}) => {
+    const receiver = title.getAttribute('userID')
+    const notify = document.getElementById(from)
+
+    if(receiver === from) {
+        appendMessage({message, time})
+    } 
+})

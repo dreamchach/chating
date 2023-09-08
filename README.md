@@ -34,3 +34,5 @@ https://www.w3schools.com/nodejs/nodejs_http.asp
 ## 7. Private Chat구현하기(DM) - 유저 세션 생성하기
 ### 1. 유저 세션 생성하기
 ### 2. 메시지 보낼 상대 선택하기
+
+## 8. Private Chat구현하기(DM) - 메시지 보내기
