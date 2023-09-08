@@ -9,6 +9,8 @@ const server = http.createServer(app)
 const io = new Server(server)
 let users = []
 const mongoose = require('mongoose')
+const crypto = require('crypto')
+const randomId = () => crypto.randomBytes(8).toString('hex')
 
 require('dotenv').config()
 
@@ -20,8 +22,33 @@ mongoose.connect(process.env.mongoDB_URI)
 .then(() => console.log('mongoDB connected!'))
 .catch((error) => console.error(error))
 
+app.post('/session', (req, res) => {
+    const data = {
+        username : req.body.username,
+        userID : randomId()
+    }
+    res.send(data)
+})
+
+io.use((socket, next) => {
+    const username = socket.handshake.auth.username
+    const userID = socket.handshake.auth.userID
+
+    if(!username) {
+        return next(new Error('Invalid username'))
+    }
+
+    socket.username = username
+    socket.id = userID
+
+    next()
+})
+
 io.on('connection', async(socket) => {
-    let userData = {}
+    let userData = {
+        username: socket.username,
+        userID : socket.id
+    }
     users.push(userData)
     io.emit('users-data', {users})
     socket.on('message-to-server', () => {})

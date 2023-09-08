@@ -30,3 +30,7 @@ https://www.w3schools.com/nodejs/nodejs_http.asp
 ### 2. 웹 기본 UI 생성
 ### 3. Socket.IO 연동
 ### 4. mongoDB 연동
+
+## 7. Private Chat구현하기(DM) - 유저 세션 생성하기
+### 1. 유저 세션 생성하기
+### 2. 메시지 보낼 상대 선택하기
