@@ -127,9 +127,16 @@ messageForm.addEventListener('submit', (event) => {
 
 socket.on('message-to-client', ({from, message, time}) => {
     const receiver = title.getAttribute('userID')
-    const notify = document.getElementById(from)
 
     if(receiver === from) {
         appendMessage({message, time})
     } 
+})
+
+socket.on('user-away', (userID) => {
+    const to = title.getAttribute('userID')
+
+    if(to === userID) {
+        title.innerHTML = ''
+    }
 })

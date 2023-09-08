@@ -56,8 +56,12 @@ io.on('connection', async(socket) => {
         io.to(payload.to).emit('message-to-client', payload)
         saveMessages(payload)
     })
+    socket.on('disconnected', () => {
+        users = users.filter((user) => user.userID !== socket.id)
+        io.emit('users-data', {users})
+        io.emit('user-away', socket.id)
+    })
     socket.on('fetch-messages', () => {})
-    socket.on('disconnected', () => {})
 })
 
 app.listen(port, () => {
