@@ -38,3 +38,5 @@ https://www.w3schools.com/nodejs/nodejs_http.asp
 ## 8. Private Chat구현하기(DM) - 메시지 보내기
 
 ## 9. Private Chat구현하기(DM) - 채팅방 나가기
+
+## 10. Private Chat구현하기(DM) - 데이터베이스에서 메시지 가져오기

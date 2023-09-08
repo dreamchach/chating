@@ -140,3 +140,22 @@ socket.on('user-away', (userID) => {
         title.innerHTML = ''
     }
 })
+
+socket.on('stored-messages', ({messages}) => {
+    if(messages.length > 0) {
+        messages.forEach((msg) => {
+            const payload = {
+                message : msg.message,
+                time : msg.time
+            }
+
+            if(msg.from === socket.id) {
+                appendMessage(payload)
+                console.log('내가 쓴 글')
+            } else {
+                appendMessage(payload)
+                console.log('다른 사람이 쓴 글')
+            }
+        })
+    }
+})
